@@ -1,0 +1,256 @@
+.gitignore
+  h_ac42636a4acad2 1-36
+Dockerfile.clickhouse
+  h_ac42636a4acad2 1-23
+Dockerfile.superset
+  h_ac42636a4acad2 1-15
+README.md
+  h_ac42636a4acad2 1-62
+config/00-network-listen.xml
+  h_ac42636a4acad2 1-3
+config/f1_executable_functions.xml
+  h_ac42636a4acad2 1-3
+docker-compose.yml
+  h_ac42636a4acad2 1-170
+librechat.yaml
+  h_ac42636a4acad2 1-145
+superset_config.py
+  h_ac42636a4acad2 1-7
+telemetry-producer/.devin/config.local.json
+  h_ac42636a4acad2 1-8
+telemetry-producer/.gitignore
+  h_ac42636a4acad2 1-8
+telemetry-producer/Dockerfile
+  h_ac42636a4acad2 1-19
+telemetry-producer/f1_predictions/clickhouse_io.py
+  h_ac42636a4acad2 1-330
+telemetry-producer/f1_predictions/commentary.py
+  h_ac42636a4acad2 1-274
+telemetry-producer/f1_predictions/config.py
+  h_ac42636a4acad2 1-52
+telemetry-producer/f1_predictions/config_loader.py
+  h_ac42636a4acad2 1-84
+telemetry-producer/f1_predictions/constants.py
+  h_ac42636a4acad2 1-22
+telemetry-producer/f1_predictions/feature_extraction.py
+  h_ac42636a4acad2 1-306
+telemetry-producer/f1_predictions/inference_engine.py
+  h_ac42636a4acad2 1-2175
+telemetry-producer/f1_predictions/inference_utils.py
+  h_ac42636a4acad2 1-33
+telemetry-producer/f1_predictions/models_runtime.py
+  h_ac42636a4acad2 1-197
+telemetry-producer/f1_predictions/monte_carlo_simulator.py
+  h_ac42636a4acad2 1-444
+telemetry-producer/f1_predictions/predictions.py
+  h_ac42636a4acad2 1-214
+telemetry-producer/f1_predictions/requirements.txt
+  h_ac42636a4acad2 1-9
+telemetry-producer/f1_predictions/state.py
+  h_ac42636a4acad2 1-78
+telemetry-producer/f1_predictions/state_management.py
+  h_ac42636a4acad2 1-117
+telemetry-producer/f1_predictions/utilities.py
+  h_ac42636a4acad2 1-189
+telemetry-producer/models/pit_horizon.pkl
+  h_ac42636a4acad2 1
+telemetry-producer/models/training_models/README.md
+  h_ac42636a4acad2 1-198
+telemetry-producer/models/training_models/__init__.py
+  h_ac42636a4acad2 1-7
+telemetry-producer/models/training_models/_shared_utils.py
+  h_ac42636a4acad2 1-484
+telemetry-producer/models/training_models/benchmark_model_families.py
+  h_ac42636a4acad2 1-459
+telemetry-producer/models/training_models/evaluate_all_models.py
+  h_ac42636a4acad2 1-611
+telemetry-producer/models/training_models/train_all_models.py
+  h_ac42636a4acad2 1-160
+telemetry-producer/models/training_models/train_laptime.py
+  h_ac42636a4acad2 1-462
+telemetry-producer/models/training_models/train_pace_model.py
+  h_ac42636a4acad2 1-97
+telemetry-producer/models/training_models/train_pit_model.py
+  h_ac42636a4acad2 1-120
+telemetry-producer/models/training_models/train_ranking_distribution.py
+  h_ac42636a4acad2 1-275
+telemetry-producer/models/training_models/train_sc_detector.py
+  h_ac42636a4acad2 1-55
+telemetry-producer/models/training_models/train_tire_model.py
+  h_ac42636a4acad2 1-96
+telemetry-producer/models/training_models/train_winner_model.py
+  h_ac42636a4acad2 1-565
+telemetry-producer/models/training_models/verify_data_leakage.py
+  h_ac42636a4acad2 1-161
+telemetry-producer/models/training_models/winner_benchmark_results.csv
+  h_ac42636a4acad2 1-6
+telemetry-producer/pom.xml
+  h_ac42636a4acad2 1-81
+telemetry-producer/run_end_to_end.ps1
+  h_ac42636a4acad2 1-188
+telemetry-producer/src/main/java/f1producer/DriverCSVStream.java
+  h_ac42636a4acad2 1-219
+telemetry-producer/src/main/java/f1producer/DriverStream.java
+  h_ac42636a4acad2 1-18
+telemetry-producer/src/main/java/f1producer/JsonUtil.java
+  h_ac42636a4acad2 1-28
+telemetry-producer/src/main/java/f1producer/Main.java
+  h_ac42636a4acad2 1-162
+telemetry-producer/src/main/java/f1producer/MergeCoordinator.java
+  h_ac42636a4acad2 1-180
+telemetry-producer/src/main/java/f1producer/TelemetryRecord.java
+  h_ac42636a4acad2 1-139
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_1.csv
+  h_ac42636a4acad2 1-19660
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_10.csv
+  h_ac42636a4acad2 1-19695
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_11.csv
+  h_ac42636a4acad2 1-19928
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_12.csv
+  h_ac42636a4acad2 1-19568
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_14.csv
+  h_ac42636a4acad2 1-19673
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_16.csv
+  h_ac42636a4acad2 1-19627
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_18.csv
+  h_ac42636a4acad2 1-11739
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_23.csv
+  h_ac42636a4acad2 1-19586
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_27.csv
+  h_ac42636a4acad2 1-19773
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_3.csv
+  h_ac42636a4acad2 1-19697
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_30.csv
+  h_ac42636a4acad2 1-19764
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_31.csv
+  h_ac42636a4acad2 1-19769
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_41.csv
+  h_ac42636a4acad2 1-19805
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_43.csv
+  h_ac42636a4acad2 1-19826
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_44.csv
+  h_ac42636a4acad2 1-19666
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_5.csv
+  h_ac42636a4acad2 1-19803
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_55.csv
+  h_ac42636a4acad2 1-19823
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_6.csv
+  h_ac42636a4acad2 1-19791
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_63.csv
+  h_ac42636a4acad2 1-19629
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_77.csv
+  h_ac42636a4acad2 1-19734
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_81.csv
+  h_ac42636a4acad2 1-19621
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_R_87.csv
+  h_ac42636a4acad2 1-7655
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Japanese_Grand_Prix_qualifying_results.csv
+  h_ac42636a4acad2 1-23
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_1.csv
+  h_ac42636a4acad2 1-20734
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_10.csv
+  h_ac42636a4acad2 1-1977
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_11.csv
+  h_ac42636a4acad2 1-21006
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_12.csv
+  h_ac42636a4acad2 1-20723
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_14.csv
+  h_ac42636a4acad2 1-20994
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_16.csv
+  h_ac42636a4acad2 1-20881
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_18.csv
+  h_ac42636a4acad2 1-21025
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_23.csv
+  h_ac42636a4acad2 1-21056
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_27.csv
+  h_ac42636a4acad2 1-3072
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_3.csv
+  h_ac42636a4acad2 1-20879
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_30.csv
+  h_ac42636a4acad2 1-2475
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_31.csv
+  h_ac42636a4acad2 1-20775
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_41.csv
+  h_ac42636a4acad2 1-20883
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_43.csv
+  h_ac42636a4acad2 1-20951
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_44.csv
+  h_ac42636a4acad2 1-20918
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_5.csv
+  h_ac42636a4acad2 1-20757
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_55.csv
+  h_ac42636a4acad2 1-21024
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_6.csv
+  h_ac42636a4acad2 1-1671
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_63.csv
+  h_ac42636a4acad2 1-20877
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_77.csv
+  h_ac42636a4acad2 1-20970
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_81.csv
+  h_ac42636a4acad2 1-20818
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_R_87.csv
+  h_ac42636a4acad2 1-20746
+telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver/2026_Miami_Grand_Prix_qualifying_results.csv
+  h_ac42636a4acad2 1-23
+telemetry-producer/src/main/resources/logback.xml
+  h_ac42636a4acad2 1-33
+telemetry-producer/udfs/README.md
+  h_ac42636a4acad2 1-35
+telemetry-producer/udfs/compound_encoder_function.sql
+  h_ac42636a4acad2 1-10
+telemetry-producer/udfs/executable/README.md
+  h_ac42636a4acad2 1-31
+telemetry-producer/udfs/executable/clickhouse_executable_functions.xml
+  h_ac42636a4acad2 1-117
+telemetry-producer/udfs/executable/pace_exec_udf.py
+  h_ac42636a4acad2 1-75
+telemetry-producer/udfs/executable/pit_exec_udf.py
+  h_ac42636a4acad2 1-81
+telemetry-producer/udfs/executable/winner_exec_udf.py
+  h_ac42636a4acad2 1-82
+telemetry-producer/udfs/executable_query_template.sql
+  h_ac42636a4acad2 1-96
+telemetry-producer/udfs/speed_threshold_function.sql
+  h_ac42636a4acad2 1-11
+telemetry-producer/udfs/stint_length_function.sql
+  h_ac42636a4acad2 1-18
+telemetry-producer/udfs/team_encoder_function.sql
+  h_ac42636a4acad2 1-16
+telemetry-producer/udfs/tire_encoder_function.sql
+  h_ac42636a4acad2 1-9
+telemetry-producer/udfs/track_encoder_function.sql
+  h_ac42636a4acad2 1-10
+telemetry-producer/udfs/utilities_only.sql
+  h_ac42636a4acad2 1-76
+telemetry-producer/ui/CLICKHOUSE_SETUP.md
+  h_ac42636a4acad2 1-259
+telemetry-producer/ui/app.js
+  h_ac42636a4acad2 1-545
+telemetry-producer/ui/index.html
+  h_ac42636a4acad2 1-285
+telemetry-producer/ui/main.py
+  h_ac42636a4acad2 1-890
+telemetry-producer/ui/requirements.txt
+  h_ac42636a4acad2 1-9
+telemetry-producer/ui/style.css
+  h_ac42636a4acad2 1-913
+udf_config/f1_exec.xml
+  h_ac42636a4acad2 1-104
+user_scripts/pace_exec_udf.py
+  h_ac42636a4acad2 1-83
+user_scripts/pit_exec_udf.py
+  h_ac42636a4acad2 1-35
+user_scripts/winner_exec_udf.py
+  h_ac42636a4acad2 1-82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "2538e5410448dbab59c5d6292c5d7799783e6342",
+  "prompts": {},
+  "humans": {
+    "h_ac42636a4acad2": {
+      "author": "tanushreevijayasanan <tanushree@quest1.io>"
+    }
+  }
+}
