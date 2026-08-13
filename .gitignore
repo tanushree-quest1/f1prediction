@@ -1,0 +1,36 @@
+# Environments
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Java
+target/
+*.jar
+*.war
+*.class
+
+# Docker Data / Volumes
+clickhouse_data/
+superset_home/
+mongodb_data/
+meili_data/
+librechat_images/
+librechat_uploads/
+librechat_logs/
+user_scripts/models/
+
+# Datasets (Uncomment if you want to ignore all CSVs)
+# *.csv
+
+# OS
+.DS_Store
+Thumbs.db

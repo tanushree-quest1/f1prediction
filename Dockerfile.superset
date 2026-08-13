@@ -1,0 +1,15 @@
+# Custom Apache Superset Image.
+# 
+# What it does:
+# Extends the official Superset BI image by installing the `clickhouse-connect` database driver.
+# 
+# Why it exists:
+# Allows the Superset BI dashboard to natively connect to and visualize data stored in the ClickHouse backend.
+FROM apache/superset:3.1.1
+
+USER root
+
+RUN pip install --no-cache-dir \
+    clickhouse-connect>=0.7.0
+
+USER superset

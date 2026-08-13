@@ -1,0 +1,23 @@
+# Custom ClickHouse Database Image.
+# 
+# What it does:
+# Extends the official ClickHouse server image by installing Python3 and essential ML libraries (scikit-learn, xgboost).
+# 
+# Why it exists:
+# Enables ClickHouse to run User Defined Functions (UDFs) that execute Machine Learning inference 
+# directly within SQL queries, eliminating network latency between the DB and external models.
+FROM clickhouse/clickhouse-server:24.8
+
+# Install Python and pip
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install your ML dependencies
+RUN pip3 install --no-cache-dir \
+    numpy \
+    pandas \
+    scikit-learn \
+    xgboost

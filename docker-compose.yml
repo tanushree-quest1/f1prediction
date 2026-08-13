@@ -1,0 +1,170 @@
+# Unified Docker Compose Stack for F1 Telemetry
+# 
+# What it does:
+# Provisions all stateful infrastructure (Kafka, Zookeeper, ClickHouse, MongoDB, Meilisearch) 
+# and auxiliary services (Superset, LibreChat, MCP Server) on a shared Docker network.
+
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "kafka:29092", "--list"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  clickhouse:
+    build:
+      context: .
+      dockerfile: Dockerfile.clickhouse
+    environment:
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - C:\Users\Tanushree\f1_stuff\f1_race_results:/data/csv:ro
+      - ./user_scripts:/var/lib/clickhouse/user_scripts
+      - ./config:/etc/clickhouse-server/config.d
+      - ./udf_config:/etc/clickhouse-server/user_defined_executable_functions
+      - C:/telemetry-producer/models:/var/lib/clickhouse/user_scripts/models:rw
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8123/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  producer:
+    build: ../telemetry-producer
+    depends_on:
+      kafka:
+        condition: service_healthy
+    volumes:
+      - C:/telemetry-producer/src/main/java/f1producer/raw_telemetry_per_driver:/data/csv:ro
+    environment:
+      DATASET_ROOT: /data/csv
+      YEAR: ${YEAR:-2026}
+      EVENT: ${EVENT:-Miami_Grand_Prix}
+      SPEED_FACTOR: ${SPEED_FACTOR:-60}
+    restart: on-failure
+
+  superset:
+    build:
+      context: .
+      dockerfile: Dockerfile.superset
+    container_name: superset
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: supersecretkey
+    volumes:
+      - superset_home:/app/superset_home
+    command: >
+      gunicorn
+      --workers 2
+      --timeout 120
+      --bind 0.0.0.0:8088
+      "superset.app:create_app()"
+
+  # ── ClickHouse MCP Server ──────────────────────────────────────────
+  mcp-clickhouse:
+    image: mcp/clickhouse
+    container_name: mcp-clickhouse
+    ports:
+      - "8001:8000"
+    environment:
+      # Points to your existing clickhouse container (same Docker network)
+      - CLICKHOUSE_HOST=clickhouse
+      - CLICKHOUSE_PORT=8123
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=
+      - CLICKHOUSE_SECURE=false        # ClickHouse runs plain HTTP on 8123, not HTTPS
+      - CLICKHOUSE_MCP_SERVER_TRANSPORT=sse
+      - CLICKHOUSE_MCP_BIND_HOST=0.0.0.0
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+
+  # ── MongoDB (required by LibreChat) ───────────────────────────────
+  mongodb:
+    image: mongo:7
+    container_name: chat-mongodb
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+
+  # ── MeiliSearch (optional but recommended for conversation search) ─
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    container_name: chat-meilisearch
+    restart: always
+    environment:
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+      - MEILI_NO_ANALYTICS=true
+    volumes:
+      - meilisearch_data:/meili_data
+
+  # ── LibreChat ──────────────────────────────────────────────────────
+  librechat:
+    image: registry.librechat.ai/danny-avila/librechat-dev:latest
+    container_name: LibreChat
+    restart: always
+    ports:
+      - "3080:3080"
+    depends_on:
+      - mongodb
+      - meilisearch
+      - mcp-clickhouse
+    env_file:
+      - .env
+    environment:
+      - HOST=0.0.0.0
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - MEILI_HOST=http://meilisearch:7700
+      # Tell LibreChat where to find the custom config (mcpServers, endpoints, etc.)
+      - CONFIG_PATH=/app/librechat.yaml
+    volumes:
+      - ./librechat.yaml:/app/librechat.yaml
+      - librechat_images:/app/client/public/images
+      - librechat_uploads:/app/uploads
+      - librechat_logs:/app/logs
+
+volumes:
+  clickhouse_data:
+  superset_home:
+  mongodb_data:
+  meilisearch_data:
+  librechat_images:
+  librechat_uploads:
+  librechat_logs:
