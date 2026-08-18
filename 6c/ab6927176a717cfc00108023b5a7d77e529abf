@@ -1,0 +1,22 @@
+telemetry-producer/models/training_models/train_winner_model.py
+  h_ac42636a4acad2 454-457,460-461
+telemetry-producer/models/training_models/train_ranking_distribution.py
+  h_ac42636a4acad2 227-248
+docker-compose.yml
+  h_ac42636a4acad2 58
+export_fastf1_csv.py
+  h_ac42636a4acad2 1-246
+telemetry-producer/dependency-reduced-pom.xml
+  h_ac42636a4acad2 1-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "6cab6927176a717cfc00108023b5a7d77e529abf",
+  "prompts": {},
+  "humans": {
+    "h_ac42636a4acad2": {
+      "author": "tanushreevijayasanan <tanushree@quest1.io>"
+    }
+  }
+}
