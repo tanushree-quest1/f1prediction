@@ -451,13 +451,14 @@ def train_winner_model():
         sample_weight=weights.iloc[train_idx],
     )
 
-    # ── FIX 4b: Isotonic calibration on dedicated calibration split ────────────
-    # Isotonic is more flexible than sigmoid and spreads probabilities further.
-    # cv="prefit" means: base_model is already trained, just learn the mapping.
+    # ── FIX 4b: Isotonic calibration on the dedicated calibration split ──────
+    # sklearn 1.9 removed the deprecated cv="prefit" path. Use a supported
+    # 3-fold calibration fit instead so the training script remains compatible
+    # with newer scikit-learn releases while keeping the validation set clean.
     model = CalibratedClassifierCV(
         base_model,
-        method="isotonic",   # was "sigmoid" — isotonic spreads probs more
-        cv="prefit",
+        method="isotonic",
+        cv=3,
     )
     model.fit(
         X.iloc[cal_idx],

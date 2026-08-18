@@ -55,6 +55,7 @@ services:
       - ./config:/etc/clickhouse-server/config.d
       - ./udf_config:/etc/clickhouse-server/user_defined_executable_functions
       - C:/telemetry-producer/models:/var/lib/clickhouse/user_scripts/models:rw
+      - C:/Users/Tanushree/data:/data/csv:ro
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:8123/ping"]
       interval: 10s

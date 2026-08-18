@@ -224,12 +224,28 @@ def train_ranking_distribution():
     # =========================================================================
     # CALIBRATION (isotonic on multinomial)
     # =========================================================================
-    model = CalibratedClassifierCV(
-        base_model,
-        method="isotonic",
-        cv="prefit"
-    )
-    model.fit(X.iloc[cal_idx], y.iloc[cal_idx])
+    # Some race-position classes can be sparse in the calibration split. In newer
+    # sklearn versions, CalibratedClassifierCV requires each class to have enough
+    # examples for the requested fold count, otherwise it raises a ValueError.
+    # If calibration data is too thin, fall back to the trained base model to keep
+    # the pipeline working without crashing.
+    cal_counts = np.bincount(y.iloc[cal_idx].to_numpy().astype(int), minlength=n_classes)
+    min_cal_class_count = int(cal_counts.min()) if len(cal_counts) else 0
+    if min_cal_class_count >= 3:
+        model = CalibratedClassifierCV(
+            base_model,
+            method="isotonic",
+            cv=3,
+        )
+        model.fit(X.iloc[cal_idx], y.iloc[cal_idx])
+        print(f"  Calibration: isotonic CV on cal set (min class count={min_cal_class_count})")
+    else:
+        model = base_model
+        model.fit(X.iloc[train_idx], y.iloc[train_idx], sample_weight=w.iloc[train_idx])
+        print(
+            f"  Calibration skipped: cal set too sparse for CV "
+            f"(min class count={min_cal_class_count}; need >=3); using trained base model."
+        )
     
     # =========================================================================
     # VALIDATION
